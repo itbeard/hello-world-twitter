@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Send a Hello World post through the X API.">
+    <title>Hello World for X</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <main class="page-shell">
+      <section class="hero" aria-labelledby="page-title">
+        <p class="eyebrow">X API · one small post</p>
+        <h1 id="page-title">Say hello<br>to the world.</h1>
+        <p class="hero-copy">A focused, private publishing tool. Your credentials stay on the server.</p>
+      </section>
+
+      <section class="composer" aria-labelledby="composer-title">
+        <div class="composer-heading">
+          <div>
+            <p class="section-label">Ready to publish</p>
+            <h2 id="composer-title">New post</h2>
+          </div>
+          <div class="connection" id="connection" role="status">
+            <span class="connection-dot" aria-hidden="true"></span>
+            <span id="connection-text">Checking X API</span>
+          </div>
+        </div>
+
+        <div class="message-card">
+          <label for="message">Message</label>
+          <textarea id="message" rows="4" readonly>Hello World</textarea>
+          <div class="message-meta">
+            <span>Exact demo message</span>
+            <span>11 / 280</span>
+          </div>
+        </div>
+
+        <button class="publish-button" id="publish" type="button" disabled>
+          <span id="button-text">Post to X</span>
+          <span class="arrow" aria-hidden="true">↗</span>
+        </button>
+
+        <div class="result" id="result" role="status" aria-live="polite" hidden></div>
+        <p class="privacy-note"><span aria-hidden="true">●</span> Signed and sent securely from this server</p>
+      </section>
+    </main>
+  </body>
+</html>

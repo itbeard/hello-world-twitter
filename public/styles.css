@@ -1,0 +1,250 @@
+:root {
+  color-scheme: dark;
+  font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #0a0a0a;
+  color: #f6f3ec;
+  font-synthesis: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  background:
+    radial-gradient(circle at 70% 18%, rgba(202, 255, 51, 0.08), transparent 26rem),
+    #0a0a0a;
+}
+
+button,
+textarea {
+  font: inherit;
+}
+
+.page-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(340px, 520px);
+  gap: clamp(3rem, 9vw, 9rem);
+  align-items: center;
+  width: min(1180px, calc(100% - 3rem));
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 4rem 0;
+}
+
+.eyebrow,
+.section-label {
+  margin: 0 0 1.25rem;
+  color: #caff33;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+h1 {
+  max-width: 640px;
+  margin: 0;
+  font-size: clamp(4rem, 9vw, 8.5rem);
+  font-weight: 750;
+  letter-spacing: -0.075em;
+  line-height: 0.82;
+}
+
+.hero-copy {
+  max-width: 460px;
+  margin: 2.5rem 0 0;
+  color: #9c9c97;
+  font-size: clamp(1rem, 1.6vw, 1.25rem);
+  line-height: 1.65;
+}
+
+.composer {
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  border: 1px solid #292929;
+  border-radius: 1.5rem;
+  background: rgba(20, 20, 19, 0.92);
+  box-shadow: 0 2rem 7rem rgba(0, 0, 0, 0.5);
+}
+
+.composer-heading {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.composer-heading .section-label {
+  margin-bottom: 0.5rem;
+}
+
+h2 {
+  margin: 0;
+  font-size: 2rem;
+  letter-spacing: -0.04em;
+}
+
+.connection {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  margin-top: 0.25rem;
+  color: #a8a8a3;
+  font-size: 0.75rem;
+  white-space: nowrap;
+}
+
+.connection-dot {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background: #777;
+}
+
+.connection.connected .connection-dot {
+  background: #caff33;
+  box-shadow: 0 0 0.75rem rgba(202, 255, 51, 0.65);
+}
+
+.connection.missing .connection-dot {
+  background: #ffb648;
+}
+
+.message-card {
+  padding: 1.25rem;
+  border: 1px solid #333330;
+  border-radius: 1rem;
+  background: #0d0d0c;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.75rem;
+  color: #898985;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+textarea {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  resize: none;
+  overflow: hidden;
+  background: transparent;
+  color: #f6f3ec;
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-weight: 650;
+  letter-spacing: -0.045em;
+}
+
+.message-meta {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 1rem;
+  border-top: 1px solid #242422;
+  color: #6f6f6b;
+  font-size: 0.72rem;
+}
+
+.publish-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 1rem;
+  padding: 1.1rem 1.25rem;
+  border: 0;
+  border-radius: 1rem;
+  background: #caff33;
+  color: #0a0a0a;
+  cursor: pointer;
+  font-weight: 850;
+  transition: transform 150ms ease, filter 150ms ease;
+}
+
+.publish-button:not(:disabled):hover {
+  filter: brightness(1.08);
+  transform: translateY(-2px);
+}
+
+.publish-button:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 3px;
+}
+
+.publish-button:disabled {
+  cursor: not-allowed;
+  filter: grayscale(0.8) brightness(0.5);
+}
+
+.arrow {
+  font-size: 1.25rem;
+}
+
+.result {
+  margin-top: 1rem;
+  padding: 1rem;
+  border: 1px solid #3b3b36;
+  border-radius: 0.75rem;
+  color: #d5d5cf;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.result.success {
+  border-color: rgba(202, 255, 51, 0.5);
+}
+
+.result.error {
+  border-color: rgba(255, 124, 92, 0.55);
+  color: #ffc0af;
+}
+
+.result a {
+  color: #caff33;
+}
+
+.privacy-note {
+  margin: 1.25rem 0 0;
+  color: #6f6f6b;
+  font-size: 0.72rem;
+  text-align: center;
+}
+
+.privacy-note span {
+  margin-right: 0.35rem;
+  color: #caff33;
+  font-size: 0.5rem;
+}
+
+@media (max-width: 820px) {
+  .page-shell {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+    width: min(620px, calc(100% - 2rem));
+    padding: 4rem 0 2rem;
+  }
+
+  h1 {
+    font-size: clamp(4rem, 18vw, 7rem);
+  }
+}
+
+@media (max-width: 460px) {
+  .composer-heading {
+    display: block;
+  }
+
+  .connection {
+    margin-top: 1rem;
+  }
+}
