@@ -1,5 +1,7 @@
 node_modules/
 .env
 .data/
+.output.txt
+public/vendor/
 .DS_Store
 npm-debug.log*

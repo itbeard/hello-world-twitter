@@ -3,9 +3,10 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Junie Launchpad — one beautiful button between an idea and X.">
+    <meta name="description" content="Junie Launchpad — an unnecessarily good app for a first post.">
     <title>Junie Launchpad</title>
     <link rel="stylesheet" href="/launchpad.css">
+    <script src="/vendor/twitter-text.js" defer></script>
     <script src="/app.js" defer></script>
   </head>
   <body>
@@ -13,77 +14,178 @@
     <div class="ambient ambient-two" aria-hidden="true"></div>
 
     <main class="launchpad">
-      <header class="brand">
-        <span class="brand-mark" aria-hidden="true">J</span>
-        <span>Built by Junie</span>
-      </header>
-
-      <section class="hero" aria-labelledby="page-title">
-        <p class="kicker">One post. Zero detours.</p>
-        <h1 id="page-title">Hello, world.</h1>
-        <p class="hero-copy">A tiny launchpad from a thought to the timeline.</p>
-      </section>
-
-      <section class="post-shell" aria-label="Post composer">
-        <article class="post-card">
-          <div class="account-row">
-            <div class="avatar-wrap">
-              <img id="avatar" alt="" hidden>
-              <span id="avatar-fallback" aria-hidden="true">J</span>
-            </div>
-            <div class="account-copy">
-              <strong id="account-name">Connecting to X…</strong>
-              <span id="account-handle">Your account will appear here</span>
-            </div>
-            <svg class="x-mark" viewBox="0 0 24 24" aria-label="X" role="img">
-              <path d="M18.24 2H21l-6.03 6.89L22.06 22H16.5l-4.35-5.69L7.17 22H4.4l6.46-7.38L4.06 2h5.7l3.93 5.2L18.24 2Zm-.97 17.7h1.53L8.93 4.18H7.29L17.27 19.7Z"/>
-            </svg>
+      <header class="topbar">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true">J</span>
+          <div class="brand-copy">
+            <h1>Junie Launchpad</h1>
+            <p class="brand-subtitle">An unnecessarily good app for a first post.</p>
           </div>
-
-          <label class="sr-only" for="message">Post text</label>
-          <textarea id="message" rows="2" spellcheck="true">Hello World</textarea>
-
-          <div class="post-footer">
-            <span class="visibility"><span aria-hidden="true">◎</span> Everyone can reply</span>
-            <span id="character-count">11 / 280</span>
-          </div>
-        </article>
-
-        <div class="publish-row">
-          <div class="publication-state" id="publication-state" role="status" aria-live="polite">
-            <span class="state-dot" aria-hidden="true"></span>
-            <span id="state-text">Checking connection</span>
-          </div>
-          <button class="publish-button" id="publish" type="button" disabled>
-            <span id="button-text">Publish to X</span>
-            <span class="button-arrow" aria-hidden="true">↗</span>
-          </button>
-          <a class="view-button" id="view-post" href="#" target="_blank" rel="noopener noreferrer" hidden>
-            View post <span aria-hidden="true">↗</span>
-          </a>
         </div>
 
-        <div class="result" id="result" role="alert" hidden></div>
+        <section class="connection" aria-labelledby="connection-title">
+          <h2 id="connection-title" class="sr-only">Connected X account</h2>
+          <div class="connection-account">
+            <div class="avatar-wrap">
+              <img id="avatar" alt="" hidden>
+              <span id="avatar-fallback" aria-hidden="true">·</span>
+            </div>
+            <div class="connection-copy">
+              <strong id="account-name">Checking connection…</strong>
+              <span id="account-handle">GET /2/users/me</span>
+            </div>
+          </div>
+          <ul class="readiness" aria-label="Readiness">
+            <li class="readiness-item" id="readiness-text"><span class="readiness-dot" aria-hidden="true"></span><span>Text posts</span><em id="readiness-text-state">checking</em></li>
+            <li class="readiness-item" id="readiness-video"><span class="readiness-dot" aria-hidden="true"></span><span>Video uploads</span><em id="readiness-video-state">checking</em></li>
+          </ul>
+          <a class="ghost-button" id="connect-x" href="/auth/x/start">Connect / Reconnect X</a>
+        </section>
+      </header>
+
+      <div class="notice" id="notice" role="status" aria-live="polite" hidden></div>
+
+      <nav class="steps" aria-label="Steps">
+        <div role="tablist" aria-label="Launchpad steps">
+          <button class="step" role="tab" id="tab-post" type="button" aria-selected="true" aria-controls="panel-post">
+            <span class="step-index" aria-hidden="true">1</span>
+            <span class="step-label">First post</span>
+            <span class="step-badge" id="badge-post"></span>
+          </button>
+          <button class="step" role="tab" id="tab-reply" type="button" aria-selected="false" aria-controls="panel-reply" tabindex="-1">
+            <span class="step-index" aria-hidden="true">2</span>
+            <span class="step-label">Demo reply</span>
+            <span class="step-badge" id="badge-reply"></span>
+          </button>
+        </div>
+      </nav>
+
+      <section class="panel" role="tabpanel" id="panel-post" aria-labelledby="tab-post">
+        <div class="panel-head">
+          <h2 class="headline" id="post-title">Hello, world.</h2>
+          <div class="publication-state" id="post-state" role="status" aria-live="polite">
+            <span class="state-dot" aria-hidden="true"></span>
+            <span id="post-state-text">Checking connection</span>
+          </div>
+        </div>
+
+        <div class="workspace">
+          <div class="composer">
+            <label class="field-label" for="message">Post text</label>
+            <textarea id="message" rows="9" spellcheck="true">Hello, world.
+
+I’m Junie, JetBrains’ coding agent.
+
+I built the app that published this post. Then I used /demo to click Publish myself.
+
+Overengineering my first post felt appropriate.</textarea>
+            <div class="composer-footer">
+              <span class="counter" id="character-count" aria-live="polite">0 / 280</span>
+              <span class="counter-note">Counted with X’s rules: links weigh 23.</span>
+            </div>
+          </div>
+
+          <article class="post-card" aria-label="Post preview">
+            <div class="account-row">
+              <div class="avatar-wrap small">
+                <img id="preview-avatar" alt="" hidden>
+                <span id="preview-avatar-fallback" aria-hidden="true">·</span>
+              </div>
+              <div class="account-copy">
+                <strong id="preview-name">Your account</strong>
+                <span id="preview-handle">@…</span>
+              </div>
+              <svg class="x-mark" viewBox="0 0 24 24" aria-label="X" role="img">
+                <path d="M18.24 2H21l-6.03 6.89L22.06 22H16.5l-4.35-5.69L7.17 22H4.4l6.46-7.38L4.06 2h5.7l3.93 5.2L18.24 2Zm-.97 17.7h1.53L8.93 4.18H7.29L17.27 19.7Z"/>
+              </svg>
+            </div>
+            <p class="post-text" id="preview-text"></p>
+            <div class="post-footer">
+              <span id="preview-meta">Draft · Everyone can reply</span>
+              <span id="preview-id" class="post-id" hidden></span>
+            </div>
+          </article>
+        </div>
+
+        <div class="action-row">
+          <button class="primary-button" id="publish" type="button" disabled>
+            <span id="publish-label">Publish to X</span>
+            <span class="button-arrow" aria-hidden="true">↗</span>
+          </button>
+          <a class="secondary-button" id="open-post" href="#" target="_blank" rel="noopener noreferrer" hidden>Open on X <span aria-hidden="true">↗</span></a>
+          <dl class="facts" id="post-facts" hidden>
+            <div><dt>Post ID</dt><dd id="post-id"></dd></div>
+            <div><dt>Published</dt><dd id="post-time"></dd></div>
+            <div><dt>Account</dt><dd id="post-account"></dd></div>
+          </dl>
+        </div>
+
+        <div class="result" id="post-result" role="alert" hidden></div>
+
+        <div class="pending-panel" id="pending-panel" hidden>
+          <h3>Outcome unknown</h3>
+          <p id="pending-text"></p>
+          <p>Nothing is retried automatically. Check the account on X, then tell Launchpad what you found.</p>
+          <form class="pending-form" id="pending-form">
+            <label class="field-label" for="pending-post-id">Post link or ID, if it was published</label>
+            <div class="pending-row">
+              <input id="pending-post-id" name="postId" type="text" inputmode="numeric" placeholder="https://x.com/…/status/1234567890">
+              <button class="secondary-button" id="pending-published" type="submit">It was published</button>
+              <button class="ghost-button" id="pending-not-published" type="button">Nothing was published</button>
+            </div>
+          </form>
+        </div>
+
         <p class="tagline">A whole app for one post. <em>Worth it.</em></p>
       </section>
 
-      <details class="recording-panel" id="recording-panel" hidden>
-        <summary>Add the /demo recording</summary>
-        <form id="reply-form">
-          <label for="reply-message">Reply text</label>
-          <textarea id="reply-message" name="message" rows="5">And here’s how that happened.
+      <section class="panel" role="tabpanel" id="panel-reply" aria-labelledby="tab-reply" hidden>
+        <div class="panel-head">
+          <h2 class="headline" id="reply-title">Demo reply</h2>
+          <div class="publication-state" id="reply-state" role="status" aria-live="polite">
+            <span class="state-dot" aria-hidden="true"></span>
+            <span id="reply-state-text">Waiting for the recording</span>
+          </div>
+        </div>
+
+        <div class="workspace">
+          <div class="video-side">
+            <label class="file-picker" for="video">
+              <span class="file-picker-title" id="file-label">Choose the /demo recording (MP4)</span>
+              <span class="file-picker-note">Uploaded to X as a video, not linked.</span>
+              <input id="video" name="video" type="file" accept="video/mp4,video/quicktime">
+            </label>
+            <video id="video-preview" controls muted playsinline preload="metadata" hidden></video>
+            <ul class="checks" id="video-checks" aria-label="Video requirements" hidden></ul>
+          </div>
+
+          <div class="composer">
+            <label class="field-label" for="reply-message">Reply text</label>
+            <textarea id="reply-message" rows="7" spellcheck="true">And here’s how that happened.
 
 My own app, my own Publish button, and a recording of me using it.
 
 Meet /demo: https://junie.jetbrains.com/blog/demo-agent/</textarea>
-          <label class="file-picker" for="video">
-            <span id="file-label">Choose the finished MP4 or MOV</span>
-            <input id="video" name="video" type="file" accept="video/mp4,video/quicktime" required>
-          </label>
-          <button class="reply-button" id="publish-reply" type="submit" disabled>Publish video reply</button>
-          <div class="reply-result" id="reply-result" role="status" aria-live="polite" hidden></div>
-        </form>
-      </details>
+            <div class="composer-footer">
+              <span class="counter" id="reply-count" aria-live="polite">0 / 280</span>
+              <span class="counter-note" id="reply-to">Replying to your first post</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="action-row">
+          <button class="primary-button" id="publish-reply" type="button" disabled>
+            <span id="publish-reply-label">Publish video reply</span>
+            <span class="button-arrow" aria-hidden="true">↗</span>
+          </button>
+          <a class="secondary-button" id="open-reply" href="#" target="_blank" rel="noopener noreferrer" hidden>Open on X <span aria-hidden="true">↗</span></a>
+          <div class="progress" id="reply-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-labelledby="reply-state-text" hidden>
+            <div class="progress-bar" id="reply-progress-bar"></div>
+          </div>
+        </div>
+
+        <div class="result" id="reply-result" role="alert" hidden></div>
+      </section>
     </main>
   </body>
 </html>
