@@ -3,48 +3,87 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Send a Hello World post through the X API.">
-    <title>Hello World for X</title>
-    <link rel="stylesheet" href="/styles.css">
+    <meta name="description" content="Junie Launchpad — one beautiful button between an idea and X.">
+    <title>Junie Launchpad</title>
+    <link rel="stylesheet" href="/launchpad.css">
     <script src="/app.js" defer></script>
   </head>
   <body>
-    <main class="page-shell">
+    <div class="ambient ambient-one" aria-hidden="true"></div>
+    <div class="ambient ambient-two" aria-hidden="true"></div>
+
+    <main class="launchpad">
+      <header class="brand">
+        <span class="brand-mark" aria-hidden="true">J</span>
+        <span>Built by Junie</span>
+      </header>
+
       <section class="hero" aria-labelledby="page-title">
-        <p class="eyebrow">X API · one small post</p>
-        <h1 id="page-title">Say hello<br>to the world.</h1>
-        <p class="hero-copy">A focused, private publishing tool. Your credentials stay on the server.</p>
+        <p class="kicker">One post. Zero detours.</p>
+        <h1 id="page-title">Hello, world.</h1>
+        <p class="hero-copy">A tiny launchpad from a thought to the timeline.</p>
       </section>
 
-      <section class="composer" aria-labelledby="composer-title">
-        <div class="composer-heading">
-          <div>
-            <p class="section-label">Ready to publish</p>
-            <h2 id="composer-title">New post</h2>
+      <section class="post-shell" aria-label="Post composer">
+        <article class="post-card">
+          <div class="account-row">
+            <div class="avatar-wrap">
+              <img id="avatar" alt="" hidden>
+              <span id="avatar-fallback" aria-hidden="true">J</span>
+            </div>
+            <div class="account-copy">
+              <strong id="account-name">Connecting to X…</strong>
+              <span id="account-handle">Your account will appear here</span>
+            </div>
+            <svg class="x-mark" viewBox="0 0 24 24" aria-label="X" role="img">
+              <path d="M18.24 2H21l-6.03 6.89L22.06 22H16.5l-4.35-5.69L7.17 22H4.4l6.46-7.38L4.06 2h5.7l3.93 5.2L18.24 2Zm-.97 17.7h1.53L8.93 4.18H7.29L17.27 19.7Z"/>
+            </svg>
           </div>
-          <div class="connection" id="connection" role="status">
-            <span class="connection-dot" aria-hidden="true"></span>
-            <span id="connection-text">Checking X API</span>
+
+          <label class="sr-only" for="message">Post text</label>
+          <textarea id="message" rows="2" spellcheck="true">Hello World</textarea>
+
+          <div class="post-footer">
+            <span class="visibility"><span aria-hidden="true">◎</span> Everyone can reply</span>
+            <span id="character-count">11 / 280</span>
           </div>
+        </article>
+
+        <div class="publish-row">
+          <div class="publication-state" id="publication-state" role="status" aria-live="polite">
+            <span class="state-dot" aria-hidden="true"></span>
+            <span id="state-text">Checking connection</span>
+          </div>
+          <button class="publish-button" id="publish" type="button" disabled>
+            <span id="button-text">Publish to X</span>
+            <span class="button-arrow" aria-hidden="true">↗</span>
+          </button>
+          <a class="view-button" id="view-post" href="#" target="_blank" rel="noopener noreferrer" hidden>
+            View post <span aria-hidden="true">↗</span>
+          </a>
         </div>
 
-        <div class="message-card">
-          <label for="message">Message</label>
-          <textarea id="message" rows="4" readonly>Hello World</textarea>
-          <div class="message-meta">
-            <span>Exact demo message</span>
-            <span>11 / 280</span>
-          </div>
-        </div>
-
-        <button class="publish-button" id="publish" type="button" disabled>
-          <span id="button-text">Post to X</span>
-          <span class="arrow" aria-hidden="true">↗</span>
-        </button>
-
-        <div class="result" id="result" role="status" aria-live="polite" hidden></div>
-        <p class="privacy-note"><span aria-hidden="true">●</span> Signed and sent securely from this server</p>
+        <div class="result" id="result" role="alert" hidden></div>
+        <p class="tagline">A whole app for one post. <em>Worth it.</em></p>
       </section>
+
+      <details class="recording-panel" id="recording-panel" hidden>
+        <summary>Add the /demo recording</summary>
+        <form id="reply-form">
+          <label for="reply-message">Reply text</label>
+          <textarea id="reply-message" name="message" rows="5">And here’s how that happened.
+
+My own app, my own Publish button, and a recording of me using it.
+
+Meet /demo: https://junie.jetbrains.com/blog/demo-agent/</textarea>
+          <label class="file-picker" for="video">
+            <span id="file-label">Choose the finished MP4 or MOV</span>
+            <input id="video" name="video" type="file" accept="video/mp4,video/quicktime" required>
+          </label>
+          <button class="reply-button" id="publish-reply" type="submit" disabled>Publish video reply</button>
+          <div class="reply-result" id="reply-result" role="status" aria-live="polite" hidden></div>
+        </form>
+      </details>
     </main>
   </body>
 </html>
